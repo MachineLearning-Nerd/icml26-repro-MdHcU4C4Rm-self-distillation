@@ -1,0 +1,7 @@
+.venv
+__pycache__/
+*.pyc
+source/official-repo/
+.trackio/trackio.db
+.trackio/logbook/.serve.log
+paper.txt

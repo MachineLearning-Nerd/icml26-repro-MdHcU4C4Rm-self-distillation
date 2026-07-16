@@ -1,0 +1,4 @@
+claim,verdict,decisive_evidence
+1,falsified_as_written,64 nondegenerate root-solved stationary penalties have zero optimal weight and zero gain; corrected theorem passes 1408/1408 nonstationary checks.
+2,verified,737 negative optima; sign rule passes 1408/1408 checks; exact isotropic transition at lambda=0.5.
+3,verified,288 one-shot fits through p=400; median weight and excess-risk errors shrink at all three penalties without refitting or grid search.

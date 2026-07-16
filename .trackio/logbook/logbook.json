@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Optimal Unconstrained Self-Distillation",
+  "emoji": "🎯",
+  "space_id": "DineshAI/MdHcU4C4Rm",
+  "paper": {
+    "arxiv_id": "2602.17565"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-MdHcU4C4Rm"
+  ],
+  "updated_at": "2026-07-16T16:10:28+00:00",
+  "root": {
+    "slug": "index",
+    "title": "Repro - Optimal Unconstrained Self-Distillation",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "00-scored-evidence-summary",
+        "title": "00 - Scored evidence summary",
+        "file": "pages/00-scored-evidence-summary/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-1-stationary-counterexamples",
+        "title": "Claim 1 - Stationary counterexamples",
+        "file": "pages/claim-1-stationary-counterexamples/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-negative-optimal-mixing",
+        "title": "Claim 2 - Negative optimal mixing",
+        "file": "pages/claim-2-negative-optimal-mixing/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-one-shot-gcv-tuning",
+        "title": "Claim 3 - One-shot GCV tuning",
+        "file": "pages/claim-3-one-shot-gcv-tuning/page.md",
+        "children": []
+      },
+      {
+        "slug": "methods-tests-and-provenance",
+        "title": "Methods, tests, and provenance",
+        "file": "pages/methods-tests-and-provenance/page.md",
+        "children": []
+      },
+      {
+        "slug": "limitations-and-falsification-scope",
+        "title": "Limitations and falsification scope",
+        "file": "pages/limitations-and-falsification-scope/page.md",
+        "children": []
+      },
+      {
+        "slug": "conclusion",
+        "title": "Conclusion",
+        "file": "pages/conclusion/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 3657,
+  "revision": "1784218228956688183"
+}

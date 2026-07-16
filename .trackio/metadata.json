@@ -1,0 +1,20 @@
+{
+  "space_id": "DineshAI/MdHcU4C4Rm",
+  "emoji": "🎯",
+  "created_at": "2026-07-16T16:06:35+00:00",
+  "last_page": "methods-tests-and-provenance",
+  "local_artifacts": [
+    "unconstrained-self-distillation-repro/unconstrained-self-distillation-cpu-reproduction:v0"
+  ],
+  "autosync": false,
+  "private": false,
+  "local_dashboards": {},
+  "artifacts_bucket": "DineshAI/MdHcU4C4Rm-artifacts",
+  "paper": {
+    "arxiv_id": "2602.17565"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-MdHcU4C4Rm"
+  ]
+}

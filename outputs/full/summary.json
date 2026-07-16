@@ -1,0 +1,68 @@
+{
+  "paper": {
+    "openreview": "MdHcU4C4Rm",
+    "arxiv": "2602.17565"
+  },
+  "claim_1": {
+    "verdict": "falsified_as_written",
+    "reason": "The claim omits Theorem 2.2's nonstationary condition R'(lambda) != 0.",
+    "stationary_counterexamples": 64,
+    "stationary_all_nondegenerate": true,
+    "max_abs_stationary_derivative": 1.9576354426398268e-14,
+    "max_abs_stationary_weight": 5.207888399099298e-14,
+    "max_abs_stationary_gain": 2.544043748557646e-28,
+    "corrected_nonstationary_checks": 1408,
+    "corrected_strict_gains": 1408,
+    "min_corrected_gain": 1.949232328837568e-06
+  },
+  "claim_2": {
+    "verdict": "verified",
+    "negative_weights": 737,
+    "positive_weights": 671,
+    "sign_rule_checks": 1408,
+    "sign_rule_passes": 1408,
+    "max_weight_identity_error": 1.438849039914203e-13,
+    "isotropic_boundary_lambda": 0.5,
+    "boundary_weight": -0.0,
+    "boundary_gain": 0.0
+  },
+  "claim_3": {
+    "verdict": "verified",
+    "fits": 288,
+    "endpoints": {
+      "0.1": {
+        "weight_error_reduction_factor": 1.7498447649552147,
+        "excess_risk_reduction_factor": 2.4310103792119295,
+        "p400_sign_accuracy": 1.0
+      },
+      "0.5": {
+        "weight_error_reduction_factor": 1.9647123009929757,
+        "excess_risk_reduction_factor": 3.4291142276773323,
+        "p400_sign_accuracy": 0.20833333333333334
+      },
+      "2.0": {
+        "weight_error_reduction_factor": 1.650744413040252,
+        "excess_risk_reduction_factor": 2.331211500870086,
+        "p400_sign_accuracy": 1.0
+      }
+    },
+    "all_gcv_discrepancies_positive": true
+  },
+  "cross_checks": {
+    "max_gain_identity_error": 1.6653345369377348e-14,
+    "structural_rows": 1408,
+    "stationary_rows": 64,
+    "brute_force_checks": 12,
+    "max_brute_force_weight_error": 4.440892098500626e-16
+  },
+  "compute": {
+    "wall_seconds": 4.202509768074378,
+    "cpu_only": true,
+    "gpu_used": false,
+    "python": "3.12.13",
+    "numpy": "2.3.5",
+    "scipy": "1.17.1",
+    "processor": "",
+    "platform": "Linux-7.0.9-arch2-1-x86_64-with-glibc2.43"
+  }
+}

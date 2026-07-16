@@ -1,0 +1,5 @@
+[
+  {"text": "For any squared prediction risk, optimally mixed student strictly improves upon ridge teacher at every regularization level", "status": "unverified"},
+  {"text": "Optimal mixing weight can surprisingly be negative", "status": "unverified"},
+  {"text": "Proposes consistent one-shot tuning method to estimate optimal weight without retraining or grid search", "status": "unverified"}
+]

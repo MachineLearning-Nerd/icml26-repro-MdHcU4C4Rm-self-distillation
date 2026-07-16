@@ -1,0 +1,95 @@
+{
+  "README.md": {
+    "sha256": "06b5ed91aa595295e4603da6f4f73dfaae587e600306bd97bc843c69521db401",
+    "bytes": 805
+  },
+  "SOURCE_AUDIT.md": {
+    "sha256": "863112731c301b25f6af742e21f07e642dfe56cb5052a4d2e280577582eff46b",
+    "bytes": 1680
+  },
+  "claims.json": {
+    "sha256": "c07a164eeac8e50269524dd167f898c5cfc0962c2a0f8057d2a7a1a7691de6af",
+    "bytes": 399
+  },
+  "outputs/full/brute_force_checks.csv": {
+    "sha256": "3da6f190df80f38f5daf9cb5ce92a278ff2fe4cfad3ef06f8d87e2cf7739665c",
+    "bytes": 1308
+  },
+  "outputs/full/claim_evidence.csv": {
+    "sha256": "06b1856fdc383bdeca8b08d8f8885760e44d6a2c958efede24d4deffc5dd3d8e",
+    "bytes": 456
+  },
+  "outputs/full/isotropic_limit.csv": {
+    "sha256": "93553f5f33241de19189e73fa0db57328f8bdf73c4d63112abf25b5e2a4cb2f4",
+    "bytes": 9491
+  },
+  "outputs/full/oneshot_summary.csv": {
+    "sha256": "8689a01e9e469987e0ceaef366037319a61da99f6f4b5ee81be35e2a710fd2a3",
+    "bytes": 1012
+  },
+  "outputs/full/oneshot_trials.csv": {
+    "sha256": "d16260d5d29f7fe0ac68f8375a8cd54be14eec4264dff93dcc0108abaa571fc1",
+    "bytes": 34779
+  },
+  "outputs/full/self_distillation_evidence.png": {
+    "sha256": "9f3c339ccf5d8c09c73b7bcefd09225228afb00cef9b1d4c56dfd58788a0f7a3",
+    "bytes": 173542
+  },
+  "outputs/full/stationary_counterexamples.csv": {
+    "sha256": "893cafd1bef256ad20e5a0cbe902a7d708f6c0caa98ca03932da3c5ea39f4f65",
+    "bytes": 21793
+  },
+  "outputs/full/structural_trials.csv": {
+    "sha256": "68e711e4a9ae2bba625ceefad65556bfce631878dfa50c056c825c146094bc7b",
+    "bytes": 462931
+  },
+  "outputs/full/summary.json": {
+    "sha256": "12eda3f2ebe1a7795961c2f60086ae080eecba2b902aa3b6c641f34f995f5a68",
+    "bytes": 2080
+  },
+  "paper.pdf": {
+    "sha256": "5ee256f603d43dec7ffc8e67971e738ef1085f99f54528cb544baf4dcbd8c2c2",
+    "bytes": 4155471
+  },
+  "reproduction/ENVIRONMENT.md": {
+    "sha256": "20d8f2732c17925d188614967eec056d9d029a5ea2dd8164def49f17b5bf6746",
+    "bytes": 290
+  },
+  "reproduction/build_logbook.py": {
+    "sha256": "1a4ed12e952076b8abeff6502a08d848cdfa27d27bed9c8ef57da10ccf86cd65",
+    "bytes": 11864
+  },
+  "reproduction/log_bundle.py": {
+    "sha256": "aeb416d84f3a31a00b65dc7134dd00eab5d803c13c87184d96eceaabc526b82e",
+    "bytes": 1203
+  },
+  "reproduction/reproduce.py": {
+    "sha256": "d854c02a5672ae30866fb628406bf5094ac31569dd703ee55c83ef0efd313657",
+    "bytes": 16250
+  },
+  "reproduction/requirements-cpu.txt": {
+    "sha256": "19985353b724dd368308fbd6084e55cb63e894c3f645adf4996d2e124b191588",
+    "bytes": 76
+  },
+  "reproduction/test_reproduction.py": {
+    "sha256": "16e5c49a416b451218d5a383c68307c01e1741927a1a458ae6ae43851828fb44",
+    "bytes": 3669
+  },
+  "source/official-snapshot/README.md": {
+    "sha256": "27fb7434625ed4f31de6d5518b9c3caf8dc6c4740890b7550cf3797271c06679",
+    "bytes": 1001
+  },
+  "source/official-snapshot/asymptotic_risk_and_estimation.py": {
+    "sha256": "765348e0af039155dd47af59d0500e7393499c9389117ffa3b96b59e4082af40",
+    "bytes": 20660
+  },
+  "source/official-snapshot/asymptotic_risk_curves_and_gain.py": {
+    "sha256": "16c8bcfe49b6f304545c4e68bd24bb78c5300d475610482ed01af3df787b9cfd",
+    "bytes": 13182
+  },
+  "official_code": {
+    "repository": "https://github.com/hhd357/optimal_self_distillation_ridge",
+    "commit": "7215dda72fc63149fca730248bebc34aa4d3cc8b",
+    "imported_by_reproduction": false
+  }
+}
