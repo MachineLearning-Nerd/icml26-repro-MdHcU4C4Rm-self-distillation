@@ -6,6 +6,8 @@
 {"type": "markdown", "id": "cell_0c73f81e8bb5", "created_at": "2026-07-16T16:06:39+00:00", "title": "FALSIFIED AS WRITTEN; corrected theorem verified"}
 -->
 ## Exact scored claim
+**⚠️ Historical rejected baseline page (superseded).** The current verification of Claim 1 is [Claim 1 - Strict improvement (Theorem 2.2)](#/claim-1-strict-improvement), now VERIFIED under the paper's `R'(λ)≠0` condition. The 64 stationary penalties below are retained as the *equality boundary* evidence (not a falsification).
+
 
 > For any squared prediction risk, optimally mixed student strictly improves upon ridge teacher at every regularization level.
 
