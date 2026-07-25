@@ -9,22 +9,14 @@ dependencies = [
     "pandas==3.0.3",
     "matplotlib==3.11.0",
     "ucimlrepo>=0.0.7",
-    # Claim 6 (CIFAR10) reproduces the paper's pretrained-ResNet-18 feature
-    # protocol. Torch is only needed on the Linux HF cpu-upgrade runner; the
-    # three UCI regression datasets and all other claims are torch-free.
-    "torch; sys_platform == 'linux'",
-    "torchvision; sys_platform == 'linux'",
 ]
+# Claim 6 (CIFAR10) consumes committed pretrained ResNet-18 features
+# (data/cifar10_resnet18_features.npz); torch is NOT needed at runtime. The
+# extraction script reproduction/extract_cifar10_features.py documents how to
+# regenerate those features with a separate torch environment.
 
 [tool.uv]
-# Frozen, reproducible environment. CPU-only torch wheels (Linux) come from the
-# PyTorch CPU index so the HF container never downloads a multi-GB CUDA build.
-[[tool.uv.index]]
-name = "pytorch-cpu"
-url = "https://download.pytorch.org/whl/cpu"
-explicit = true
+# Frozen, reproducible environment. uv.lock is the source of truth; reproduce
+# with `uv sync --frozen`.
 
-[tool.uv.sources]
-torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
-torchvision = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
 

@@ -251,19 +251,39 @@ def load_cifar10():
     ResNet-18 (ImageNet weights, FC -> Identity) extracts 512-dim features from a
     2000/2000 train/test subsample (seed 2026, images resized to 224x224). Targets
     are one-hot (K=10); the curvature protocol uses the multi-output aggregate MSE.
+
+    The committed ``data/cifar10_resnet18_features.npz`` holds features extracted
+    with the exact protocol above (see ``reproduction/extract_cifar10_features.py``
+    and the HF-datasets path documented in the report); it is loaded directly so
+    the runtime environment stays torch-free. If the cache is absent, features are
+    extracted on the fly via torchvision (requires torch on Linux).
     """
-    # ResNet-18 inference is throughput-bound; let torch use every core. The
-    # global OMP=1 pinning (set in run.sh) is for reproducible single-core numpy
-    # in the ridge solves; we raise it BEFORE torch import so torch's own OpenMP
-    # pool initializes multi-threaded. numpy's pool was already created with 1
-    # thread at process start, so the ridge numerics stay single-threaded.
-    n_threads = max(1, os.cpu_count() or 4)
-    for v in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS"):
-        os.environ[v] = str(n_threads)
+    from pathlib import Path
+    cache = Path(__file__).resolve().parents[1] / "data" / "cifar10_resnet18_features.npz"
+    if cache.exists():
+        d = np.load(cache)
+        Xtr, ytr = d["X_train"], d["y_train"]
+        Xte, yte = d["X_test"], d["y_test"]
+        print(f"  [claim6] CIFAR10: loaded cached ResNet-18 features {cache.name}", flush=True)
+    else:
+        Xtr, ytr, Xte, yte = _extract_cifar10_features()
+    Ytr = np.eye(10)[ytr]
+    Yte = np.eye(10)[yte]
+    return Xtr, Ytr, Xte, Yte, True
+
+
+def _extract_cifar10_features():
     import torch
     import torch.nn as nn
     import torchvision
     from torchvision import transforms
+    # ResNet-18 inference is throughput-bound; let torch use every core. The
+    # global OMP=1 pinning (set in run.sh) is for reproducible single-core numpy
+    # in the ridge solves; we raise it BEFORE torch import so torch's own OpenMP
+    # pool initializes multi-threaded.
+    n_threads = max(1, os.cpu_count() or 4)
+    for v in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS"):
+        os.environ[v] = str(n_threads)
     torch.set_num_threads(n_threads)
     torch.manual_seed(SEED)
     transform = transforms.Compose([
@@ -292,9 +312,7 @@ def load_cifar10():
 
     Xtr, ytr = extract(train_full, train_idx)
     Xte, yte = extract(test_full, test_idx)
-    Ytr = np.eye(10)[ytr]
-    Yte = np.eye(10)[yte]
-    return Xtr, Ytr, Xte, Yte, True
+    return Xtr, ytr, Xte, yte
 
 
 # Paper Table 2 reference (for the agreement check).
