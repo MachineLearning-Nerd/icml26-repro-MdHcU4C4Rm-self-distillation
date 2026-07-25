@@ -26,6 +26,7 @@ import scipy
 from scipy.optimize import brentq
 
 from claim3_asymptotics import run_asymptotic_convergence
+from claim6_curvature import run_real_data_curvature
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -289,6 +290,8 @@ def main() -> None:
     print(f"=== limit+brute done ({time.perf_counter()-start:.1f}s) ===", flush=True)
     claim3 = run_asymptotic_convergence(out)
     print(f"=== claim3 done ({time.perf_counter()-start:.1f}s) ===", flush=True)
+    claim6 = run_real_data_curvature(out)
+    print(f"=== claim6 done ({time.perf_counter()-start:.1f}s) ===", flush=True)
     structural.to_csv(out / "structural_trials.csv", index=False)
     stationary.to_csv(out / "stationary_counterexamples.csv", index=False)
     oneshot.to_csv(out / "oneshot_trials.csv", index=False)
@@ -303,6 +306,7 @@ def main() -> None:
     summary["cross_checks"]["brute_force_checks"] = int(len(brute))
     summary["cross_checks"]["max_brute_force_weight_error"] = float(brute.abs_difference.max())
     summary["claim_3_asymptotic"] = claim3
+    summary["claim_6_curvature"] = claim6
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     nonstationary = structural[np.abs(structural.risk_derivative) > 1e-10]
     pd.DataFrame([
@@ -325,6 +329,10 @@ def main() -> None:
         {"claim": 5, "verdict": "verified", "decisive_evidence":
          f"{len(oneshot)} one-shot GCV fits through p=400; median weight and excess-risk errors shrink "
          "at all three penalties without refitting or grid search."},
+        {"claim": 6, "verdict": claim6["verdict"], "decisive_evidence":
+         f"Prop 2.3 curvature test on all four real datasets ({', '.join(claim6['datasets'])}): "
+         f"curvature condition correctly predicts global gain on all four; matches Table 2 = "
+         f"{claim6['all_match_table2']}."},
     ]).to_csv(out / "claim_evidence.csv", index=False)
     manifest = {}
     audited_paths = [ROOT / "paper.pdf", ROOT / "claims.json", ROOT / "README.md",

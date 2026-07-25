@@ -1,6 +1,6 @@
 [project]
 name = "icml26-repro-self-distillation"
-version = "0.2.0"
+version = "0.3.0"
 description = "Independent CPU reproduction of Optimal Unconstrained Self-Distillation in Ridge Regression (MdHcU4C4Rm / arXiv 2602.17565)."
 requires-python = ">=3.12"
 dependencies = [
@@ -9,8 +9,22 @@ dependencies = [
     "pandas==3.0.3",
     "matplotlib==3.11.0",
     "ucimlrepo>=0.0.7",
+    # Claim 6 (CIFAR10) reproduces the paper's pretrained-ResNet-18 feature
+    # protocol. Torch is only needed on the Linux HF cpu-upgrade runner; the
+    # three UCI regression datasets and all other claims are torch-free.
+    "torch; sys_platform == 'linux'",
+    "torchvision; sys_platform == 'linux'",
 ]
 
 [tool.uv]
-# Frozen, reproducible environment shared by every experiment node.
-# Lockfile (uv.lock) is the source of truth; `uv sync --frozen` reproduces it exactly.
+# Frozen, reproducible environment. CPU-only torch wheels (Linux) come from the
+# PyTorch CPU index so the HF container never downloads a multi-GB CUDA build.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+torchvision = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
