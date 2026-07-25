@@ -8,6 +8,13 @@ set -euo pipefail
 
 echo "=== [run.sh] host=$(uname -a) cwd=$(pwd) ==="
 
+# Deterministic single-threaded numerics: pin BLAS/OpenMP to one thread so
+# results are reproducible across the local mac and the HF cpu container, and
+# thread oversubscription cannot stall the run on a shared CPU flavor.
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+       NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+echo "=== [run.sh] thread env pinned to 1 (reproducible single-core numerics) ==="
+
 # 1. Ensure uv is available (local mac has it; HF python:3.12 image does not).
 if ! command -v uv >/dev/null 2>&1; then
     echo "=== [run.sh] installing uv ==="
