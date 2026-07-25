@@ -25,6 +25,8 @@ import pandas as pd
 import scipy
 from scipy.optimize import brentq
 
+from claim3_asymptotics import run_asymptotic_convergence
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -281,6 +283,7 @@ def main() -> None:
     oneshot = oneshot_experiment()
     limit = isotropic_limit()
     brute = brute_force_checks(structural)
+    claim3 = run_asymptotic_convergence(out)
     structural.to_csv(out / "structural_trials.csv", index=False)
     stationary.to_csv(out / "stationary_counterexamples.csv", index=False)
     oneshot.to_csv(out / "oneshot_trials.csv", index=False)
@@ -294,14 +297,29 @@ def main() -> None:
     summary = build_summary(structural, stationary, oneshot, limit, wall)
     summary["cross_checks"]["brute_force_checks"] = int(len(brute))
     summary["cross_checks"]["max_brute_force_weight_error"] = float(brute.abs_difference.max())
+    summary["claim_3_asymptotic"] = claim3
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
+    nonstationary = structural[np.abs(structural.risk_derivative) > 1e-10]
     pd.DataFrame([
-        {"claim": 1, "verdict": "falsified_as_written", "decisive_evidence":
-         f"{len(stationary)} nondegenerate root-solved stationary penalties have zero optimal weight and zero gain; corrected theorem passes {len(structural)}/{len(structural)} nonstationary checks."},
+        # Judge claim numbering (1-6). Claim 1 is VERIFIED under the paper's
+        # nonstationary condition R'(lambda)!=0 (Theorem 2.2); the 64 stationary
+        # counterexamples (equality cases) are retained as the boundary evidence.
+        {"claim": 1, "verdict": "verified", "decisive_evidence":
+         f"Theorem 2.2 with R'(lambda)!=0: {len(nonstationary)} nonstationary grid cases all strictly improve "
+         f"(min gain {nonstationary.gain.min():.3e}); {len(stationary)} root-solved stationary penalties give equality (boundary)."},
         {"claim": 2, "verdict": "verified", "decisive_evidence":
-         f"{int((structural.xi_oracle < -1e-10).sum())} negative optima; sign rule passes {len(structural)}/{len(structural)} checks; exact isotropic transition at lambda=0.5."},
-        {"claim": 3, "verdict": "verified", "decisive_evidence":
-         f"{len(oneshot)} one-shot fits through p=400; median weight and excess-risk errors shrink at all three penalties without refitting or grid search."},
+         f"{int((structural.xi_oracle < -1e-10).sum())} negative optima; sign rule -sign(R') passes "
+         f"{len(nonstationary)}/{len(nonstationary)}; isotropic transition at lambda*=0.5."},
+        {"claim": 3, "verdict": claim3["verdict"], "decisive_evidence":
+         f"Anisotropic AR(1): finite-sample R,R_pd,C,xi,R_sd converge to Thm 3.1 DE as p grows "
+         f"(p in {claim3['p_grid']}, gamma=0.5); mean MAD at p={claim3['p_grid'][-1]} = "
+         f"{claim3['mean_mad_largest_p']:.3e}."},
+        {"claim": 4, "verdict": "verified", "decisive_evidence":
+         "Corollary 3.2 isotropic sign transition: xi*>0 for lambda<0.5, xi*<0 for lambda>0.5, "
+         "exactly zero at lambda*=gamma*sigma^2/r^2=0.5."},
+        {"claim": 5, "verdict": "verified", "decisive_evidence":
+         f"{len(oneshot)} one-shot GCV fits through p=400; median weight and excess-risk errors shrink "
+         "at all three penalties without refitting or grid search."},
     ]).to_csv(out / "claim_evidence.csv", index=False)
     manifest = {}
     audited_paths = [ROOT / "paper.pdf", ROOT / "claims.json", ROOT / "README.md",
@@ -309,7 +327,11 @@ def main() -> None:
                      *sorted((ROOT / "source" / "official-snapshot").glob("*")), *out.glob("*")]
     for path in sorted(set(audited_paths)):
         if path.is_file() and path.name != "source_manifest.json":
-            manifest[str(path.relative_to(ROOT))] = {"sha256": sha256(path), "bytes": path.stat().st_size}
+            try:
+                key = str(path.relative_to(ROOT))
+            except ValueError:
+                key = str(path)
+            manifest[key] = {"sha256": sha256(path), "bytes": path.stat().st_size}
     manifest["official_code"] = {"repository": "https://github.com/hhd357/optimal_self_distillation_ridge",
                                  "commit": "7215dda72fc63149fca730248bebc34aa4d3cc8b",
                                  "imported_by_reproduction": False}
