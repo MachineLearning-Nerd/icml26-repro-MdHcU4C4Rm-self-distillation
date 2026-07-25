@@ -196,8 +196,10 @@ def run_asymptotic_convergence(output_dir) -> dict:
     Theorem 3.1 predicts ``mad, bias -> 0`` as ``p -> inf`` with ``p/n -> gamma``.
     """
     from pathlib import Path
+    import time as _time
     out = Path(output_dir)
     rows = []
+    _t0 = _time.perf_counter()
     for snr in SNR_GRID:
         sigma2 = 1.0
         r2 = sigma2 * snr
@@ -205,6 +207,8 @@ def run_asymptotic_convergence(output_dir) -> dict:
             n = int(round(p / GAMMA))
             n_seeds = SEEDS_BY_P[p]
             prob = AsymptoticProblem.make(p, GAMMA, sigma2, r2)
+            print(f"  [claim3] snr={snr} p={p} n={n} seeds={n_seeds} "
+                  f"({{_time.perf_counter() - _t0:.1f}s)", flush=True)
             for lam in LAMBDA_GRID:
                 de = deterministic_equivalents(
                     lam, GAMMA, sigma2, prob.spec, prob.signal_in_sigma_basis)
