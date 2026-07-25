@@ -10,56 +10,25 @@
     "icml2026-repro",
     "paper-MdHcU4C4Rm"
   ],
-  "updated_at": "2026-07-16T16:10:28+00:00",
+  "updated_at": "2026-07-25T00:00:00+00:00",
   "root": {
     "slug": "index",
     "title": "Repro - Optimal Unconstrained Self-Distillation",
     "file": "pages/index.md",
     "children": [
-      {
-        "slug": "00-scored-evidence-summary",
-        "title": "00 - Scored evidence summary",
-        "file": "pages/00-scored-evidence-summary/page.md",
-        "children": []
-      },
-      {
-        "slug": "claim-1-stationary-counterexamples",
-        "title": "Claim 1 - Stationary counterexamples",
-        "file": "pages/claim-1-stationary-counterexamples/page.md",
-        "children": []
-      },
-      {
-        "slug": "claim-2-negative-optimal-mixing",
-        "title": "Claim 2 - Negative optimal mixing",
-        "file": "pages/claim-2-negative-optimal-mixing/page.md",
-        "children": []
-      },
-      {
-        "slug": "claim-3-one-shot-gcv-tuning",
-        "title": "Claim 3 - One-shot GCV tuning",
-        "file": "pages/claim-3-one-shot-gcv-tuning/page.md",
-        "children": []
-      },
-      {
-        "slug": "methods-tests-and-provenance",
-        "title": "Methods, tests, and provenance",
-        "file": "pages/methods-tests-and-provenance/page.md",
-        "children": []
-      },
-      {
-        "slug": "limitations-and-falsification-scope",
-        "title": "Limitations and falsification scope",
-        "file": "pages/limitations-and-falsification-scope/page.md",
-        "children": []
-      },
-      {
-        "slug": "conclusion",
-        "title": "Conclusion",
-        "file": "pages/conclusion/page.md",
-        "children": []
-      }
+      {"slug": "00-scored-evidence-summary", "title": "00 - Scored evidence summary (6 claims)", "file": "pages/00-scored-evidence-summary/page.md", "children": []},
+      {"slug": "claim-1-strict-improvement", "title": "Claim 1 - Strict improvement (Theorem 2.2)", "file": "pages/claim-1-strict-improvement/page.md", "children": []},
+      {"slug": "claim-2-negative-optimal-mixing", "title": "Claim 2 - Negative optimal mixing", "file": "pages/claim-2-negative-optimal-mixing/page.md", "children": []},
+      {"slug": "claim-3-theorem-3-1-asymptotics", "title": "Claim 3 - Theorem 3.1 anisotropic asymptotics", "file": "pages/claim-3-theorem-3-1-asymptotics/page.md", "children": []},
+      {"slug": "claim-4-corollary-3-2-sign-transition", "title": "Claim 4 - Corollary 3.2 sign transition", "file": "pages/claim-4-corollary-3-2-sign-transition/page.md", "children": []},
+      {"slug": "claim-5-one-shot-gcv", "title": "Claim 5 - One-shot GCV tuning (Theorem 4.1)", "file": "pages/claim-5-one-shot-gcv/page.md", "children": []},
+      {"slug": "claim-6-real-data-curvature", "title": "Claim 6 - Proposition 2.3 real-data curvature", "file": "pages/claim-6-real-data-curvature/page.md", "children": []},
+      {"slug": "methods-tests-and-provenance", "title": "Methods, tests, and provenance", "file": "pages/methods-tests-and-provenance/page.md", "children": []},
+      {"slug": "limitations-and-falsification-scope", "title": "Limitations and falsification scope", "file": "pages/limitations-and-falsification-scope/page.md", "children": []},
+      {"slug": "conclusion", "title": "Conclusion", "file": "pages/conclusion/page.md", "children": []},
+      {"slug": "historical-rejected-baseline", "title": "Historical rejected baseline (3-claim logbook)", "file": "pages/historical-rejected-baseline/page.md", "children": []},
+      {"slug": "claim-1-stationary-counterexamples", "title": "Historical - Claim 1 stationary boundary evidence", "file": "pages/claim-1-stationary-counterexamples/page.md", "children": []},
+      {"slug": "claim-3-one-shot-gcv-tuning", "title": "Historical - Claim 3 one-shot GCV (now Claim 5)", "file": "pages/claim-3-one-shot-gcv-tuning/page.md", "children": []}
     ]
-  },
-  "agent_view_tokens": 3657,
-  "revision": "1784218228956688183"
+  }
 }

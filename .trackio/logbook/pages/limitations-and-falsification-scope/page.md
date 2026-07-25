@@ -3,21 +3,13 @@
 
 ---
 <!-- trackio-cell
-{"type": "markdown", "id": "cell_223c0c9fe785", "created_at": "2026-07-16T16:06:45+00:00", "title": "What is and is not established"}
+{"type": "markdown", "id": "cell_lim_v2", "created_at": "2026-07-25T00:00:00+00:00", "title": "What is and is not established"}
 -->
-# Limitations and negative evidence
+# Limitations and deviations
 
-- Claim 1 is falsified only **as worded by the challenge**. The paper's actual
-  nonstationary theorem is supported, not contradicted.
-- The experiments are synthetic Gaussian ridge problems. This is appropriate
-  for the three scored mathematical claims, but the paper's four real-dataset
-  curvature experiments and multi-round extensions were not rerun.
-- One-shot consistency is finite-scale evidence through p=400, not a proof of
-  the asymptotic theorem. Exact formulas, multiple dimensions, raw seeds, and
-  regret identities make the evidence independently auditable.
-- At the isotropic transition lambda=0.5 the limiting optimal weight is zero;
-  finite-sample sign is unstable by construction. We evaluate magnitude and
-  excess risk there and reserve sign accuracy for penalties separated from the
-  boundary.
-- The official repository is pinned for provenance and source comparison only;
-  the reproduction deliberately does not import it.
+- **Claim 1** is verified under Theorem 2.2's explicit `R'(λ)≠0` condition; at a root-solved stationary penalty the gain is exactly zero (the equality the theorem predicts), retained as boundary evidence.
+- **Claim 3** convergence is finite-scale corroboration through p=800 (not a proof of the asymptotic theorem); the deterministic equivalents are independently reconstructed and cross-checked against the official snapshot to 8 decimals.
+- **Claim 6** — the curvature condition is a continuous ratio; **Communities & Crime is a boundary case** (`D/RHS = 0.884`, right at the decision boundary; CIFAR10's 1.017 is just on the other side). Its binary curvature classification is therefore sample-sensitive; the **non-circular held-out global gain (−0.22%, no gain) matches Table 2** and is the robust outcome. The official full-test gain is optimistically biased (ξ fit and evaluated on the same test set); the held-out split is reported as the rigorous measure.
+- **CIFAR-10 features** use the official pretrained-ImageNet ResNet-18 protocol (FC→Identity, 512-dim, 2000/2000 seed-2026 subsample). The canonical `cs.toronto.edu` CIFAR-10 tarball was unreachable at viable speed on the local network, so features were extracted from the HuggingFace `uoft-cs/cifar10` mirror (same canonical images) and cached as `data/cifar10_resnet18_features.npz`; `reproduction/extract_cifar10_features.py` documents the exact regenerable torchvision path.
+- **Compute:** Claim 3 ran on HF cpu-upgrade; after the HF credit balance was exhausted, Claim 6 ran on the local arm CPU (single-threaded). No GPU was used anywhere.
+- The official repository is pinned for provenance only; the reproduction imports no official module.

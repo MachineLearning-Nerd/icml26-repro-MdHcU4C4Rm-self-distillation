@@ -6,6 +6,8 @@
 {"type": "markdown", "id": "cell_d43987485966", "created_at": "2026-07-16T16:06:42+00:00", "title": "VERIFIED across proportional scales"}
 -->
 ## Exact scored claim
+**⚠️ Historical rejected baseline page (superseded).** This is the earlier numbering of one-shot GCV tuning, now [Claim 5 - One-shot GCV tuning](#/claim-5-one-shot-gcv). The evidence below is unchanged and still passes the test suite.
+
 
 > Proposes consistent one-shot tuning method to estimate optimal weight without retraining or grid search.
 
