@@ -331,8 +331,9 @@ def main() -> None:
          "at all three penalties without refitting or grid search."},
         {"claim": 6, "verdict": claim6["verdict"], "decisive_evidence":
          f"Prop 2.3 curvature test on all four real datasets ({', '.join(claim6['datasets'])}): "
-         f"curvature condition correctly predicts global gain on all four; matches Table 2 = "
-         f"{claim6['all_match_table2']}."},
+         f"non-circular held-out global gain matches Table 2 on all four "
+         f"(={claim6['all_held_out_gain_match_table2']}); curvature condition matches on clear cases "
+         f"(Communities is a boundary case, ratio ~0.9)."},
     ]).to_csv(out / "claim_evidence.csv", index=False)
     manifest = {}
     audited_paths = [ROOT / "paper.pdf", ROOT / "claims.json", ROOT / "README.md",

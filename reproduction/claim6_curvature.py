@@ -252,11 +252,19 @@ def load_cifar10():
     2000/2000 train/test subsample (seed 2026, images resized to 224x224). Targets
     are one-hot (K=10); the curvature protocol uses the multi-output aggregate MSE.
     """
+    # ResNet-18 inference is throughput-bound; let torch use every core. The
+    # global OMP=1 pinning (set in run.sh) is for reproducible single-core numpy
+    # in the ridge solves; we raise it BEFORE torch import so torch's own OpenMP
+    # pool initializes multi-threaded. numpy's pool was already created with 1
+    # thread at process start, so the ridge numerics stay single-threaded.
+    n_threads = max(1, os.cpu_count() or 4)
+    for v in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS"):
+        os.environ[v] = str(n_threads)
     import torch
     import torch.nn as nn
     import torchvision
     from torchvision import transforms
-
+    torch.set_num_threads(n_threads)
     torch.manual_seed(SEED)
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
