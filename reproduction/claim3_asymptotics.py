@@ -207,8 +207,8 @@ def run_asymptotic_convergence(output_dir) -> dict:
             n = int(round(p / GAMMA))
             n_seeds = SEEDS_BY_P[p]
             prob = AsymptoticProblem.make(p, GAMMA, sigma2, r2)
-            print(f"  [claim3] snr={snr} p={p} n={n} seeds={n_seeds} "
-                  f"({{_time.perf_counter() - _t0:.1f}s)", flush=True)
+            elapsed = _time.perf_counter() - _t0
+            print(f"  [claim3] snr={snr} p={p} n={n} seeds={n_seeds} ({elapsed:.1f}s)", flush=True)
             for lam in LAMBDA_GRID:
                 de = deterministic_equivalents(
                     lam, GAMMA, sigma2, prob.spec, prob.signal_in_sigma_basis)
