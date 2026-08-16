@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "repository": {
+    "owner": "MachineLearning-Nerd",
+    "final_name": "icml26-self-distillation-ridge",
+    "final_url": "https://github.com/MachineLearning-Nerd/icml26-self-distillation-ridge",
+    "previous_name": "icml26-repro-MdHcU4C4Rm-self-distillation",
+    "default_branch": "main",
+    "independent_reproduction": true,
+    "official_source_audited": true,
+    "canonical_identity": "MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>"
+  },
+  "paper": {
+    "title": "Optimal Unconstrained Self-Distillation in Ridge Regression: Strict Improvements, Precise Asymptotics, and One-Shot Tuning",
+    "authors": [
+      "Hien Dang",
+      "Pratik Patil",
+      "Alessandro Rinaldo"
+    ],
+    "arxiv": "2602.17565",
+    "openreview": "MdHcU4C4Rm",
+    "pdf_sha256": "5ee256f603d43dec7ffc8e67971e738ef1085f99f54528cb544baf4dcbd8c2c2"
+  },
+  "collection_status": "PARTIALLY_VERIFIED_WITH_LITERAL_CLAIM_BOUNDARY_AND_UNSEALED_CLAIMS",
+  "claims": [
+    {
+      "id": "claim_1",
+      "status": "FALSIFIED_AS_WRITTEN; VERIFIED_CORRECTED_NONSTATIONARY_THEOREM",
+      "evidence_path": "outputs/full/stationary_counterexamples.csv and outputs/full/structural_trials.csv",
+      "metric": "64 stationary equality cases; 1,408/1,408 corrected nonstationary gains"
+    },
+    {
+      "id": "claim_2",
+      "status": "VERIFIED_SCOPED",
+      "evidence_path": "outputs/full/structural_trials.csv and outputs/full/isotropic_limit.csv",
+      "metric": "737 negative weights; 1,408/1,408 sign-rule checks"
+    },
+    {
+      "id": "claim_3",
+      "status": "BLOCKED_REPRODUCTION_REQUIRED",
+      "evidence_path": "reproduction/claim3_asymptotics.py",
+      "missing": [
+        "outputs/full/claim3_convergence_trials.csv",
+        "outputs/full/claim3_convergence.png"
+      ]
+    },
+    {
+      "id": "claim_4",
+      "status": "VERIFIED_SCOPED",
+      "evidence_path": "outputs/full/isotropic_limit.csv",
+      "metric": "Exact transition at lambda*=0.5"
+    },
+    {
+      "id": "claim_5",
+      "status": "VERIFIED_SCOPED",
+      "evidence_path": "outputs/full/oneshot_trials.csv and outputs/full/oneshot_summary.csv",
+      "metric": "288 fits with shrinking median errors"
+    },
+    {
+      "id": "claim_6",
+      "status": "BLOCKED_REPRODUCTION_REQUIRED",
+      "evidence_path": "reproduction/claim6_curvature.py",
+      "missing": [
+        "outputs/full/claim6_curvature_summary.csv",
+        "outputs/full/claim6_curvature.png"
+      ]
+    }
+  ],
+  "historical_evaluator": {
+    "space": "DineshAI/MdHcU4C4Rm",
+    "detailed_report_score": "8/12",
+    "new_score_claimed": false,
+    "forecast": "11--12/12"
+  },
+  "branch_inventory": [
+    "main",
+    "baseline/judged-8-of-12",
+    "proof/claim-3-theorem-3-1",
+    "experiment/claim-6-curvature-four-datasets"
+  ],
+  "legacy_branch_map": {
+    "master": "main",
+    "orx/baseline-reproduction-claims-1-2-4-5": "baseline/judged-8-of-12",
+    "orx/claim-3-theorem-3-1-anisotropic-asymptotic-deter": "proof/claim-3-theorem-3-1",
+    "orx/claim-6-proposition-2-3-curvature-test-on-four-r": "experiment/claim-6-curvature-four-datasets"
+  },
+  "artifact_gate": {
+    "current_raw_output_files_complete": false,
+    "claim_3_raw_output_present": false,
+    "claim_6_raw_output_present": false,
+    "fresh_test_suite_sealed": false,
+    "next_repair": "Run bash reproduction/run.sh, inspect all generated Claim 3 and Claim 6 files, then update this manifest only after a fresh-clone pass."
+  },
+  "thank_you": "Thank you to Hien Dang, Pratik Patil, and Alessandro Rinaldo for making the paper's identities, asymptotic formulas, and self-distillation perspective available for independent study."
+}

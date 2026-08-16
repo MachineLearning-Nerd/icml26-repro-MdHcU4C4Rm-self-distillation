@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite the paper and this independent evidence audit when reusing the code or results."
+title: "Independent Evidence Audit of Optimal Unconstrained Self-Distillation in Ridge Regression"
+type: software
+authors:
+  - family-names: Dang
+    given-names: Hien
+  - family-names: Patil
+    given-names: Pratik
+  - family-names: Rinaldo
+    given-names: Alessandro
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-self-distillation-ridge"
+url: "https://arxiv.org/abs/2602.17565"
+abstract: "A scoped reproduction and evidence audit for optimal unconstrained self-distillation in ridge regression, including exact risk identities, asymptotic producers, one-shot GCV, and real-data curvature checks."
+keywords:
+  - machine learning
+  - ridge regression
+  - self-distillation
+  - reproduction
+  - evidence audit
+  - ICML 2026
+date-released: 2026-08-16

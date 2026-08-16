@@ -1,5 +1,118 @@
 [
-  {"text": "For any squared prediction risk, optimally mixed student strictly improves upon ridge teacher at every regularization level", "status": "unverified"},
-  {"text": "Optimal mixing weight can surprisingly be negative", "status": "unverified"},
-  {"text": "Proposes consistent one-shot tuning method to estimate optimal weight without retraining or grid search", "status": "unverified"}
+  {
+    "id": "claim_1",
+    "paper_anchor": "Theorem 2.2",
+    "status": "FALSIFIED_AS_WRITTEN; VERIFIED_CORRECTED_NONSTATIONARY_THEOREM",
+    "summary": "The unconditional summary is false at stationary ridge penalties, where the optimal weight and gain are exactly zero. With the paper's R'(lambda) != 0 condition, strict improvement holds on every recorded nonstationary case.",
+    "metrics": {
+      "stationary_cases": 64,
+      "max_abs_stationary_derivative": 1.9576354426398268e-14,
+      "max_abs_stationary_weight": 5.207888399099298e-14,
+      "max_abs_stationary_gain": 2.544043748557646e-28,
+      "corrected_nonstationary_cases": 1408,
+      "corrected_strict_gains": 1408,
+      "minimum_corrected_gain": 1.949232328837568e-06
+    },
+    "evidence": [
+      "outputs/full/stationary_counterexamples.csv",
+      "outputs/full/structural_trials.csv",
+      "outputs/full/summary.json",
+      "reproduction/test_reproduction.py"
+    ]
+  },
+  {
+    "id": "claim_2",
+    "paper_anchor": "Section 2.3 and Corollary 3.2",
+    "status": "VERIFIED_SCOPED",
+    "summary": "The closed-form optimal mixing weight follows the negative derivative sign rule and crosses zero at the isotropic ridge-optimal penalty.",
+    "metrics": {
+      "negative_weights": 737,
+      "positive_weights": 671,
+      "sign_rule_checks": 1408,
+      "sign_rule_passes": 1408,
+      "max_weight_identity_error": 1.438849039914203e-13,
+      "isotropic_boundary_lambda": 0.5
+    },
+    "evidence": [
+      "outputs/full/structural_trials.csv",
+      "outputs/full/isotropic_limit.csv",
+      "outputs/full/summary.json",
+      "reproduction/test_reproduction.py"
+    ]
+  },
+  {
+    "id": "claim_3",
+    "paper_anchor": "Theorem 3.1, Equations 12--19",
+    "status": "BLOCKED_REPRODUCTION_REQUIRED",
+    "summary": "The anisotropic deterministic-equivalent producer and historical report are present, but the current checkout lacks the raw convergence trials and summary loaded by the fail-closed test.",
+    "historical_reported_result": "MAD shrinks approximately 3.7x--4.2x from p=50 to p=800 under anisotropic AR(1) covariance.",
+    "evidence_present": [
+      "reproduction/claim3_asymptotics.py",
+      "reports/self-distillation/images/claim3_convergence.png",
+      "reports/self-distillation/report.md"
+    ],
+    "missing_required_artifacts": [
+      "outputs/full/claim3_convergence_trials.csv",
+      "outputs/full/claim3_convergence.png",
+      "summary.json claim_3_asymptotic section"
+    ]
+  },
+  {
+    "id": "claim_4",
+    "paper_anchor": "Corollary 3.2",
+    "status": "VERIFIED_SCOPED",
+    "summary": "The isotropic formula changes sign at lambda*=gamma sigma^2/r^2 and is exactly zero at the transition.",
+    "metrics": {
+      "gamma": 0.5,
+      "sigma_squared": 1.0,
+      "r_squared": 1.0,
+      "transition_lambda": 0.5,
+      "boundary_weight": 0.0,
+      "boundary_gain": 0.0
+    },
+    "evidence": [
+      "outputs/full/isotropic_limit.csv",
+      "reproduction/test_reproduction.py"
+    ]
+  },
+  {
+    "id": "claim_5",
+    "paper_anchor": "Theorem 4.1",
+    "status": "VERIFIED_SCOPED",
+    "summary": "One-shot GCV estimates the optimal mixing weight without grid search, sample splitting, or refitting; errors decrease across the recorded dimensions.",
+    "metrics": {
+      "fits": 288,
+      "dimensions": [50, 100, 200, 400],
+      "penalties": [0.1, 0.5, 2.0],
+      "all_gcv_discrepancies_positive": true,
+      "weight_error_reduction_factors": {
+        "lambda_0.1": 1.7498447649552147,
+        "lambda_0.5": 1.9647123009929757,
+        "lambda_2.0": 1.650744413040252
+      }
+    },
+    "evidence": [
+      "outputs/full/oneshot_trials.csv",
+      "outputs/full/oneshot_summary.csv",
+      "reproduction/test_reproduction.py"
+    ]
+  },
+  {
+    "id": "claim_6",
+    "paper_anchor": "Proposition 2.3, Equation 10, Table 2",
+    "status": "BLOCKED_REPRODUCTION_REQUIRED",
+    "summary": "The four-dataset curvature producer, cached CIFAR feature input, and historical report are present, but the raw current-checkout curvature summary expected by the test is absent.",
+    "historical_reported_result": "The report records held-out gain agreement with Table 2 on BlogFeedback, Communities and Crime, CIFAR10, and Air Quality.",
+    "evidence_present": [
+      "reproduction/claim6_curvature.py",
+      "data/cifar10_resnet18_features.npz",
+      "reports/self-distillation/images/claim6_curvature.png",
+      "reports/self-distillation/report.md"
+    ],
+    "missing_required_artifacts": [
+      "outputs/full/claim6_curvature_summary.csv",
+      "outputs/full/claim6_curvature.png",
+      "summary.json claim_6_curvature section"
+    ]
+  }
 ]
